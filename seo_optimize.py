@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""SEO оптимизация stroycash — meta, titles, H1, Schema.org"""
-import os, re
+"""SEO оптимизация remont.stroycash.ru — meta, canonical, og:url, og:image, Schema.org, H1, lang"""
+import os, re, json
 
-SITE_DIR = "/Users/macbook/Desktop/1/stroycash_new/stroycash"
+SITE_DIR = "/Users/macbook/Desktop/1/Sait remont stroycash_new/stroycash"
+BASE_URL  = "https://remont.stroycash.ru"
+OG_IMAGE  = f"{BASE_URL}/images/tild6633-3964-4939-a339-663836623265_____.jpeg"
 
 # ── Данные по каждой странице ─────────────────────────────────────────────
 PAGES = {
@@ -12,41 +14,47 @@ PAGES = {
         "desc":  "СтройКэш — ремонт квартир, строительство домов, дизайн интерьера под ключ в Москве и МО. 380 проектов, гарантия 5 лет, без выходных. Звоните: +7 (930) 334-61-76",
         "h1":    None,
         "schema_service": "Строительная компания — ремонт и строительство под ключ",
+        "keywords": "ремонт квартир Москва, строительство домов под ключ, дизайн интерьера Москва",
     },
     "page34319973.html": {
         "slug": "/remont",
         "title": "Ремонт квартир под ключ в Москве и области — СтройКэш",
         "desc":  "Ремонт квартир под ключ в Москве и МО — СтройКэш. Евроремонт, дизайнерский, черновой, косметический. Фиксированная цена, сроки по договору, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт квартир под ключ в Москве и Московской области",
         "schema_service": "Ремонт квартир под ключ",
+        "keywords": "ремонт квартир под ключ Москва, евроремонт квартиры, дизайнерский ремонт квартиры",
     },
     "page36631847.html": {
         "slug": "/build",
         "title": "Строительство домов из натуральных материалов под ключ — СтройКэш",
         "desc":  "Строительство домов под ключ в Москве и МО — СтройКэш. Монолитные, деревянные, каменные дома от 4 000 000 ₽. Дизайн-проект в подарок, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Строительство домов под ключ в Москве и МО",
         "schema_service": "Строительство домов из натуральных материалов",
+        "keywords": "строительство домов под ключ Москва, строительство коттеджей МО, каменные деревянные дома",
     },
     "page34448363.html": {
         "slug": "/remontdomov",
         "title": "Ремонт домов и коттеджей под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт домов и коттеджей под ключ в Москве и МО — СтройКэш. Евроремонт, дизайнерский, черновой ремонт загородного дома. Фиксированная цена, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт домов и коттеджей под ключ",
         "schema_service": "Ремонт домов и коттеджей под ключ",
+        "keywords": "ремонт домов под ключ Москва, ремонт загородного дома, ремонт коттеджа МО",
     },
     "page34448545.html": {
         "slug": "/klinika",
         "title": "Ремонт медицинских клиник под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт медицинских клиник под ключ в Москве и МО — СтройКэш. Соблюдение норм СанПиН, отделка кабинетов, работаем без остановки клиники. Опыт 20+ объектов.",
-        "h1":    None,
+        "h1":    "Ремонт медицинских клиник под ключ",
         "schema_service": "Ремонт медицинских клиник под ключ",
+        "keywords": "ремонт медицинских клиник Москва, отделка медцентра, ремонт больницы под ключ",
     },
     "page27262068.html": {
         "slug": "/engineering",
         "title": "Проектирование зданий и помещений в Москве и МО — СтройКэш",
         "desc":  "Проектирование зданий и помещений в Москве и МО — СтройКэш. Архитектурные, конструктивные, инженерные проекты. Согласование в Госстрой, Мосгосэкспертиза.",
-        "h1":    None,
+        "h1":    "Проектирование зданий и помещений в Москве",
         "schema_service": "Проектирование зданий и помещений",
+        "keywords": "проектирование зданий Москва, архитектурный проект дома, дизайн-проект интерьера",
     },
     "page27262073.html": {
         "slug": "/disign",
@@ -54,104 +62,119 @@ PAGES = {
         "desc":  "Дизайн интерьера под ключ в Москве и МО — СтройКэш. Авторский дизайн-проект, 3D-визуализация, авторский надзор. Скидка на ремонт при заказе дизайна.",
         "h1":    "Дизайн интерьера под ключ в Москве и МО — СтройКэш",
         "schema_service": "Дизайн интерьера под ключ",
+        "keywords": "дизайн интерьера Москва, дизайн-проект квартиры под ключ, 3D визуализация интерьера",
     },
     "page30554334.html": {
         "slug": "/shtukaturka",
         "title": "Механизированная штукатурка стен и потолков в Москве — СтройКэш",
         "desc":  "Механизированная штукатурка стен в Москве и МО — СтройКэш. Машинное нанесение, идеально ровные стены за 1–2 дня. Цена от 350 ₽/кв.м, гарантия качества.",
-        "h1":    None,
+        "h1":    "Механизированная штукатурка стен и потолков в Москве",
         "schema_service": "Механизированная штукатурка стен и потолков",
+        "keywords": "механизированная штукатурка Москва, машинная штукатурка стен, штукатурка от 350 рублей",
     },
     "page37346001.html": {
         "slug": "/styajka",
         "title": "Полусухая стяжка пола в Москве и МО — от 300 ₽/кв.м — СтройКэш",
         "desc":  "Полусухая стяжка пола в Москве и МО — СтройКэш. Идеально ровный пол за 1 день, нагрузка через 12 часов. Цена от 300 ₽/кв.м, выезд замерщика бесплатно.",
-        "h1":    None,
+        "h1":    "Полусухая стяжка пола в Москве и МО",
         "schema_service": "Полусухая стяжка пола",
+        "keywords": "полусухая стяжка пола Москва, стяжка пола цена, стяжка за один день",
     },
     "page34448315.html": {
         "slug": "/pomesheniya",
         "title": "Ремонт коммерческих помещений под ключ в Москве — СтройКэш",
         "desc":  "Ремонт коммерческих помещений под ключ в Москве и МО — СтройКэш. Офисы, магазины, рестораны, склады. Работаем без остановки бизнеса, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт коммерческих помещений под ключ в Москве",
         "schema_service": "Ремонт коммерческих помещений под ключ",
+        "keywords": "ремонт коммерческих помещений Москва, ремонт магазинов офисов, отделка торговых помещений",
     },
     "page34448619.html": {
         "slug": "/stomatologiy",
         "title": "Ремонт стоматологий под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт стоматологий под ключ в Москве и МО — СтройКэш. Соблюдение норм Роспотребнадзора и лицензионных требований. Опыт 20+ стоматологических кабинетов.",
-        "h1":    None,
+        "h1":    "Ремонт стоматологий под ключ в Москве",
         "schema_service": "Ремонт стоматологий под ключ",
+        "keywords": "ремонт стоматологии Москва, отделка стоматологического кабинета, ремонт зуботехнической лаборатории",
     },
     "page39349977.html": {
         "slug": "/mebel",
         "title": "Мебель на заказ в Москве и МО — корпусная, кухни, шкафы — СтройКэш",
         "desc":  "Мебель на заказ в Москве и МО — СтройКэш. Корпусная мебель, шкафы-купе, кухни по индивидуальным размерам. Бесплатный замер, гарантия 3 года.",
-        "h1":    None,
+        "h1":    "Мебель на заказ в Москве — корпусная, кухни, шкафы",
         "schema_service": "Мебель на заказ — корпусная мебель, кухни, шкафы",
+        "keywords": "мебель на заказ Москва, корпусная мебель под заказ, кухни на заказ шкафы купе Москва",
     },
     "page27262075.html": {
         "slug": "/portfolio",
         "title": "Портфолио выполненных работ — ремонт и строительство — СтройКэш",
         "desc":  "Портфолио СтройКэш — фото выполненных ремонтов и строительных проектов в Москве и МО. 380 объектов: квартиры, дома, офисы, клиники, стоматологии.",
-        "h1":    None,
+        "h1":    "Портфолио выполненных работ по ремонту и строительству",
         "schema_service": None,
+        "keywords": "портфолио ремонт квартир Москва, фото работ строительная компания, примеры ремонта",
     },
     "page27176351.html": {
         "slug": "/about",
         "title": "Контакты СтройКэш — строительная компания в Мытищах",
         "desc":  "Контакты СтройКэш — строительная компания. Телефон: +7 (930) 334-61-76. Адрес: г. Мытищи, ул. Медицинская 4А. Работаем без выходных, 8:00–22:00.",
-        "h1":    None,
+        "h1":    "Контакты СтройКэш",
         "schema_service": None,
+        "keywords": "СтройКэш контакты, строительная компания Мытищи, ремонт квартир Мытищи",
     },
     "page37551065.html": {
         "slug": "/team",
         "title": "Наша команда — профессиональные строители и дизайнеры — СтройКэш",
         "desc":  "Команда СтройКэш — 9 профессиональных строителей и дизайнеров в Москве и МО. Опыт от 7 лет. Руководитель — Геннадий Васильевич, с 2014 года на рынке.",
-        "h1":    None,
+        "h1":    "Наша команда — профессиональные строители и дизайнеры",
         "schema_service": None,
+        "keywords": "команда строительной компании, профессиональные строители Москва, мастера ремонта",
     },
     "page34448199.html": {
         "slug": "/vanna",
         "title": "Ремонт ванной комнаты под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт ванной комнаты под ключ в Москве и МО — СтройКэш. Плитка, сантехника, освещение, гидроизоляция. От 180 000 ₽, сроки от 14 дней, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт ванной комнаты под ключ в Москве",
         "schema_service": "Ремонт ванной комнаты под ключ",
+        "keywords": "ремонт ванной под ключ Москва, плитка в ванную, ремонт ванной комнаты цена",
     },
     "page34448265.html": {
         "slug": "/sanuzel",
         "title": "Ремонт санузла под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт санузла под ключ в Москве и МО — СтройКэш. Совмещённый и раздельный санузел, гидроизоляция, плитка, сантехника. Гарантия 5 лет, фиксированная цена.",
-        "h1":    None,
+        "h1":    "Ремонт санузла под ключ в Москве",
         "schema_service": "Ремонт санузла под ключ",
+        "keywords": "ремонт санузла под ключ Москва, ремонт совмещённого санузла, плитка санузел цена",
     },
     "page34448395.html": {
         "slug": "/kotedzh",
         "title": "Ремонт коттеджей под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт коттеджей под ключ в Москве и МО — СтройКэш. Черновой, чистовой, дизайнерский ремонт загородного дома. Фиксированная цена, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт коттеджей под ключ в Москве и МО",
         "schema_service": "Ремонт коттеджей под ключ",
+        "keywords": "ремонт коттеджей Москва, ремонт дачи под ключ, отделка загородного дома",
     },
     "page34448443.html": {
         "slug": "/ofisov",
         "title": "Ремонт офисов под ключ в Москве и МО — СтройКэш",
         "desc":  "Ремонт офисов под ключ в Москве и МО — СтройКэш. Офисные помещения, переговорные, open space. Работаем без остановки вашего бизнеса, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт офисов под ключ в Москве",
         "schema_service": "Ремонт офисов под ключ",
+        "keywords": "ремонт офисов под ключ Москва, отделка офисных помещений, ремонт open space",
     },
     "page34448501.html": {
         "slug": "/novostroika",
         "title": "Ремонт квартиры в новостройке под ключ в Москве — СтройКэш",
         "desc":  "Ремонт квартиры в новостройке под ключ в Москве и МО — СтройКэш. Черновой, чистовой, под ключ. Принимаем с нулевой отделкой, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Ремонт квартиры в новостройке под ключ",
         "schema_service": "Ремонт квартиры в новостройке под ключ",
+        "keywords": "ремонт в новостройке под ключ Москва, отделка новостройки, черновой ремонт новостройка",
     },
     "page34448654.html": {
         "slug": "/otdelka",
         "title": "Отделка квартир под ключ в Москве и МО — СтройКэш",
         "desc":  "Отделка квартир под ключ в Москве и МО — СтройКэш. Чистовая и финишная отделка стен, полов, потолков. Фиксированная цена, сроки по договору, гарантия 5 лет.",
-        "h1":    None,
+        "h1":    "Отделка квартир под ключ в Москве",
         "schema_service": "Отделка квартир под ключ",
+        "keywords": "отделка квартир под ключ Москва, чистовая отделка квартиры, финишная отделка стен",
     },
     "page27262080.html": {
         "slug": "/calculator",
@@ -159,20 +182,23 @@ PAGES = {
         "desc":  "Рассчитайте стоимость ремонта квартиры онлайн — СтройКэш. Введите площадь и тип ремонта — получите точную смету. Бесплатный выезд замерщика.",
         "h1":    "Калькулятор стоимости ремонта квартиры онлайн",
         "schema_service": None,
+        "keywords": "калькулятор ремонта квартиры онлайн, рассчитать стоимость ремонта Москва, смета на ремонт",
     },
     "page55131289.html": {
         "slug": "/quiz",
         "title": "Рассчитать стоимость ремонта квартиры онлайн — СтройКэш",
         "desc":  "Пройдите короткий квиз и получите точный расчёт стоимости ремонта квартиры в Москве. 5 вопросов — 2 минуты. Скидка 10% за заявку через квиз.",
-        "h1":    None,
+        "h1":    "Рассчитайте стоимость ремонта квартиры за 2 минуты",
         "schema_service": None,
+        "keywords": "квиз ремонт квартиры Москва, расчёт ремонта онлайн, стоимость ремонта быстро",
     },
     "page55192735.html": {
         "slug": "/quizstroy",
         "title": "Рассчитать стоимость строительства дома онлайн — СтройКэш",
         "desc":  "Пройдите короткий квиз и получите точный расчёт стоимости строительства дома в Москве и МО. 5 вопросов — 2 минуты. Бесплатная консультация архитектора.",
-        "h1":    None,
+        "h1":    "Рассчитайте стоимость строительства дома за 2 минуты",
         "schema_service": None,
+        "keywords": "квиз строительство дома Москва, расчёт строительства онлайн, стоимость дома под ключ",
     },
     "page55193637.html": {
         "slug": "/quizmebel",
@@ -180,6 +206,31 @@ PAGES = {
         "desc":  "Пройдите короткий квиз и получите точный расчёт стоимости мебели на заказ. 5 вопросов — 2 минуты. Бесплатный замер и консультация дизайнера.",
         "h1":    "Рассчитайте стоимость мебели на заказ",
         "schema_service": None,
+        "keywords": "квиз мебель на заказ Москва, расчёт стоимости мебели онлайн, корпусная мебель цена",
+    },
+    "page55196169.html": {
+        "slug": "/policy",
+        "title": "Политика конфиденциальности — СтройКэш",
+        "desc":  "Политика конфиденциальности СтройКэш. Условия обработки персональных данных пользователей сайта remont.stroycash.ru.",
+        "h1":    "Политика конфиденциальности",
+        "schema_service": None,
+        "keywords": None,
+    },
+    "page37914626.html": {
+        "slug": "/remont2",
+        "title": "Ремонт квартир в Москве — цены и этапы — СтройКэш",
+        "desc":  "Ремонт квартир в Москве и МО — СтройКэш. Полный цикл работ, прозрачная смета, фиксированные сроки. Бесплатный выезд замерщика.",
+        "h1":    "Ремонт квартир в Москве — цены и этапы",
+        "schema_service": "Ремонт квартир под ключ",
+        "keywords": "ремонт квартир Москва цены, этапы ремонта квартиры, смета ремонт квартиры",
+    },
+    "page39375218.html": {
+        "slug": "/novostroika2",
+        "title": "Ремонт в новостройке — варианты и цены — СтройКэш",
+        "desc":  "Ремонт в новостройке в Москве и МО — СтройКэш. Черновой, чистовой, под ключ. Работаем со всеми ЖК Москвы и МО. Гарантия 5 лет, фиксированная цена.",
+        "h1":    "Ремонт в новостройке — варианты и цены",
+        "schema_service": "Ремонт квартиры в новостройке под ключ",
+        "keywords": "ремонт новостройка Москва МО, отделка ЖК, черновой чистовой ремонт новостройки",
     },
 }
 
@@ -190,11 +241,11 @@ def make_schema(slug, service_name):
         "@graph": [
             {
                 "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-                "@id": "https://stroycash.ru/#business",
+                "@id": f"{BASE_URL}/#business",
                 "name": "СтройКэш",
                 "alternateName": "Stroy Cash",
                 "description": "Ремонт квартир, строительство домов и дизайн интерьера под ключ в Москве и Московской области",
-                "url": "https://stroycash.ru",
+                "url": BASE_URL,
                 "telephone": "+7-930-334-61-76",
                 "email": "stroycash2020@mail.ru",
                 "foundingDate": "2014",
@@ -222,7 +273,7 @@ def make_schema(slug, service_name):
                     "closes": "22:00"
                 }],
                 "priceRange": "$$",
-                "image": "https://stroycash.ru/images/tild6535-3636-4261-b963-313361326437___stroy_cash.png",
+                "image": f"{BASE_URL}/images/tild6535-3636-4261-b963-313361326437___stroy_cash.png",
                 "numberOfEmployees": {"@type": "QuantitativeValue", "value": 9},
                 "aggregateRating": {
                     "@type": "AggregateRating",
@@ -236,15 +287,14 @@ def make_schema(slug, service_name):
     if service_name:
         base["@graph"].append({
             "@type": "Service",
-            "provider": {"@id": "https://stroycash.ru/#business"},
+            "provider": {"@id": f"{BASE_URL}/#business"},
             "name": service_name,
             "areaServed": [
                 {"@type": "City", "name": "Москва"},
                 {"@type": "AdministrativeArea", "name": "Московская область"}
             ],
-            "url": f"https://stroycash.ru{slug}"
+            "url": f"{BASE_URL}{slug}"
         })
-    import json
     return f'<script type="application/ld+json">\n{json.dumps(base, ensure_ascii=False, indent=2)}\n</script>'
 
 # ── Обработка файла ───────────────────────────────────────────────────────
@@ -254,48 +304,91 @@ def process(fname, data):
         html = f.read()
 
     changes = []
+    full_url = BASE_URL if data["slug"] == "/" else f'{BASE_URL}{data["slug"]}'
 
-    # 1. Title
+    # 1. lang="ru" на html тег
+    if re.search(r'<html>', html, re.IGNORECASE):
+        html = re.sub(r'<html>', '<html lang="ru">', html, count=1, flags=re.IGNORECASE)
+        changes.append("lang=ru")
+    elif re.search(r'<html\s+lang="[^"]*">', html, re.IGNORECASE):
+        html = re.sub(r'<html\s+lang="[^"]*">', '<html lang="ru">', html, count=1, flags=re.IGNORECASE)
+
+    # 2. Title
     old_title = re.search(r'<title>(.*?)</title>', html, re.IGNORECASE)
     if old_title and old_title.group(1) != data["title"]:
         html = re.sub(r'<title>.*?</title>', f'<title>{data["title"]}</title>',
                       html, flags=re.IGNORECASE)
         changes.append("title")
 
-    # 2. Meta description
-    old_desc = re.search(r'<meta\s+name=["\']description["\'][^>]*content=["\']([^"\']*)["\']', html, re.IGNORECASE)
-    old_desc2 = re.search(r'<meta\s+content=["\']([^"\']*)["\'][^>]*name=["\']description["\']', html, re.IGNORECASE)
-    new_meta = f'<meta name="description" content="{data["desc"]}">'
-    if old_desc:
+    # 3. Meta description
+    new_meta_desc = f'<meta name="description" content="{data["desc"]}">'
+    if re.search(r'<meta\s+name=["\']description["\'][^>]*/?>',  html, re.IGNORECASE):
         html = re.sub(r'<meta\s+name=["\']description["\'][^>]*/?>',
-                      new_meta, html, flags=re.IGNORECASE)
-        changes.append("meta desc")
-    elif old_desc2:
+                      new_meta_desc, html, flags=re.IGNORECASE)
+    elif re.search(r'<meta\s+content=["\'][^"\']*["\'][^>]*name=["\']description["\']', html, re.IGNORECASE):
         html = re.sub(r'<meta\s+content=["\'][^"\']*["\'][^>]*name=["\']description["\'][^>]*/?>',
-                      new_meta, html, flags=re.IGNORECASE)
-        changes.append("meta desc")
+                      new_meta_desc, html, flags=re.IGNORECASE)
     else:
-        html = html.replace('</head>', f'{new_meta}\n</head>', 1)
-        changes.append("meta desc (new)")
+        html = html.replace('</head>', f'{new_meta_desc}\n</head>', 1)
+    changes.append("desc")
 
-    # 3. og:description
-    og_desc_new = f'<meta property="og:description" content="{data["desc"]}">'
+    # 4. Meta keywords
+    if data.get("keywords"):
+        new_kw = f'<meta name="keywords" content="{data["keywords"]}">'
+        if re.search(r'<meta\s+name=["\']keywords["\'][^>]*/?>',  html, re.IGNORECASE):
+            html = re.sub(r'<meta\s+name=["\']keywords["\'][^>]*/?>',
+                          new_kw, html, flags=re.IGNORECASE)
+        else:
+            html = html.replace('</head>', f'{new_kw}\n</head>', 1)
+        changes.append("keywords")
+
+    # 5. og:description
     html = re.sub(r'<meta\s+property=["\']og:description["\'][^>]*/?>',
-                  og_desc_new, html, flags=re.IGNORECASE)
+                  f'<meta property="og:description" content="{data["desc"]}">',
+                  html, flags=re.IGNORECASE)
 
-    # 4. og:title — приводим к title страницы
-    og_title_new = f'<meta property="og:title" content="{data["title"]}">'
+    # 6. og:title
     html = re.sub(r'<meta\s+property=["\']og:title["\'][^>]*/?>',
-                  og_title_new, html, flags=re.IGNORECASE)
+                  f'<meta property="og:title" content="{data["title"]}">',
+                  html, flags=re.IGNORECASE)
 
-    # 5. Schema.org — добавляем перед </head> (удаляем старую если есть)
+    # 7. og:url — ставим правильный домен
+    if re.search(r'<meta\s+property=["\']og:url["\'][^>]*/?>',  html, re.IGNORECASE):
+        html = re.sub(r'<meta\s+property=["\']og:url["\'][^>]*/?>',
+                      f'<meta property="og:url" content="{full_url}">',
+                      html, flags=re.IGNORECASE)
+    else:
+        html = html.replace('</head>', f'<meta property="og:url" content="{full_url}">\n</head>', 1)
+    changes.append("og:url")
+
+    # 8. og:image — абсолютный URL
+    html = re.sub(r'<meta\s+property=["\']og:image["\'][^>]*/?>',
+                  f'<meta property="og:image" content="{OG_IMAGE}">',
+                  html, flags=re.IGNORECASE)
+    changes.append("og:image")
+
+    # 9. canonical — ставим правильный домен
+    if re.search(r'<link\s+rel=["\']canonical["\'][^>]*/?>', html, re.IGNORECASE):
+        html = re.sub(r'<link\s+rel=["\']canonical["\'][^>]*/?>',
+                      f'<link rel="canonical" href="{full_url}">',
+                      html, flags=re.IGNORECASE)
+    else:
+        html = html.replace('</head>', f'<link rel="canonical" href="{full_url}">\n</head>', 1)
+    changes.append("canonical")
+
+    # 10. Schema.org — удаляем старую, добавляем новую
     html = re.sub(r'<script\s+type=["\']application/ld\+json["\']>.*?</script>',
-                  '', html, flags=re.DOTALL|re.IGNORECASE)
+                  '', html, flags=re.DOTALL | re.IGNORECASE)
     schema = make_schema(data["slug"], data.get("schema_service"))
     html = html.replace('</head>', f'{schema}\n</head>', 1)
     changes.append("schema")
 
-    # 6. H1 — добавляем скрытый после <body если нужен
+    # 11. H1 — скрытый тег после <body> для SEO
+    # Удаляем старый скрытый H1 если есть
+    html = re.sub(
+        r'<h1\s+style=["\']position:absolute[^"\']*["\'][^>]*>.*?</h1>',
+        '', html, flags=re.IGNORECASE | re.DOTALL
+    )
     if data.get("h1"):
         h1_html = (
             f'<h1 style="position:absolute;width:1px;height:1px;overflow:hidden;'
@@ -313,7 +406,10 @@ def process(fname, data):
 # ── Запуск ────────────────────────────────────────────────────────────────
 print("Обрабатываю страницы...\n")
 for fname, data in PAGES.items():
-    changes = process(fname, data)
-    print(f"  {data['slug']:22s}  [{', '.join(changes)}]")
+    try:
+        changes = process(fname, data)
+        print(f"  {data['slug']:22s}  [{', '.join(changes)}]")
+    except FileNotFoundError:
+        print(f"  {data['slug']:22s}  [ФАЙЛ НЕ НАЙДЕН: {fname}]")
 
 print(f"\nГотово! Обработано {len(PAGES)} страниц.")
