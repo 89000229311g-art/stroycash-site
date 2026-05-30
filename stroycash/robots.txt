@@ -1,0 +1,26 @@
+User-Agent: *
+Disallow: /page34361870.html
+Disallow: /thankyou
+Disallow: /page42884153.html
+Disallow: /page42884155.html
+Disallow: /footer
+Disallow: /page52048683.html
+Disallow: /oshibka
+Disallow: /page90290286.html
+Disallow: /agreement
+Disallow: /page90298606.html
+Disallow: /cookie-files
+Disallow: /tilda/form*
+Disallow: /tilda/rec*
+Disallow: /tilda/click*
+Disallow: /tilda/scroll*
+Disallow: /tilda/popup*
+Disallow: /tilda/cart*
+Disallow: /tilda/product*
+Disallow: /tilda/event*
+Disallow: /members/login*
+Disallow: /members/signup*
+Disallow:
+
+
+Sitemap: https://remont.stroycash.ru/sitemap.xml

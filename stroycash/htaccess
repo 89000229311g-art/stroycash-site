@@ -1,0 +1,124 @@
+ErrorDocument 403 /page52048683.html
+ErrorDocument 404 /page52048683.html
+
+DirectoryIndex page51428489.html
+
+RewriteEngine On
+
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} /robots.txt
+RewriteCond "%{DOCUMENT_ROOT}/robots_%{HTTP_HOST}.txt" -f
+RewriteRule ^(.*)$ robots_%{HTTP_HOST}.txt [NC,L]
+RewriteRule ^policy$ page55196169.html [NC]
+RewriteRule ^policy/$ page55196169.html [NC]
+
+RewriteRule ^remont-old$ page27262071.html [NC]
+RewriteRule ^remont-old/$ page27262071.html [NC]
+
+RewriteRule ^quiz$ page55131289.html [NC]
+RewriteRule ^quiz/$ page55131289.html [NC]
+
+RewriteRule ^build$ page36631847.html [NC]
+RewriteRule ^build/$ page36631847.html [NC]
+
+RewriteRule ^remont$ page34319973.html [NC]
+RewriteRule ^remont/$ page34319973.html [NC]
+
+RewriteRule ^remontdomov$ page34448363.html [NC]
+RewriteRule ^remontdomov/$ page34448363.html [NC]
+
+RewriteRule ^klinika$ page34448545.html [NC]
+RewriteRule ^klinika/$ page34448545.html [NC]
+
+RewriteRule ^engineering$ page27262068.html [NC]
+RewriteRule ^engineering/$ page27262068.html [NC]
+
+RewriteRule ^disign$ page27262073.html [NC]
+RewriteRule ^disign/$ page27262073.html [NC]
+
+RewriteRule ^shtukaturka$ page30554334.html [NC]
+RewriteRule ^shtukaturka/$ page30554334.html [NC]
+
+RewriteRule ^styajka$ page37346001.html [NC]
+RewriteRule ^styajka/$ page37346001.html [NC]
+
+RewriteRule ^pomesheniya$ page34448315.html [NC]
+RewriteRule ^pomesheniya/$ page34448315.html [NC]
+
+RewriteRule ^stomatologiy$ page34448619.html [NC]
+RewriteRule ^stomatologiy/$ page34448619.html [NC]
+
+RewriteRule ^mebel$ page39349977.html [NC]
+RewriteRule ^mebel/$ page39349977.html [NC]
+
+RewriteRule ^portfolio$ page27262075.html [NC]
+RewriteRule ^portfolio/$ page27262075.html [NC]
+
+RewriteRule ^about$ page27176351.html [NC]
+RewriteRule ^about/$ page27176351.html [NC]
+
+RewriteRule ^team$ page37551065.html [NC]
+RewriteRule ^team/$ page37551065.html [NC]
+
+RewriteRule ^thankyou$ page34361870.html [NC]
+RewriteRule ^thankyou/$ page34361870.html [NC]
+
+RewriteRule ^remont2$ page37914626.html [NC]
+RewriteRule ^remont2/$ page37914626.html [NC]
+
+RewriteRule ^calculator$ page27262080.html [NC]
+RewriteRule ^calculator/$ page27262080.html [NC]
+
+RewriteRule ^vanna$ page34448199.html [NC]
+RewriteRule ^vanna/$ page34448199.html [NC]
+
+RewriteRule ^sanuzel$ page34448265.html [NC]
+RewriteRule ^sanuzel/$ page34448265.html [NC]
+
+RewriteRule ^kotedzh$ page34448395.html [NC]
+RewriteRule ^kotedzh/$ page34448395.html [NC]
+
+RewriteRule ^ofisov$ page34448443.html [NC]
+RewriteRule ^ofisov/$ page34448443.html [NC]
+
+RewriteRule ^novostroika$ page34448501.html [NC]
+RewriteRule ^novostroika/$ page34448501.html [NC]
+
+RewriteRule ^otdelka$ page34448654.html [NC]
+RewriteRule ^otdelka/$ page34448654.html [NC]
+
+RewriteRule ^glavstar$ page26919559.html [NC]
+RewriteRule ^glavstar/$ page26919559.html [NC]
+
+RewriteRule ^yandex_692b3164051b6935html$ page38061943.html [NC]
+RewriteRule ^yandex_692b3164051b6935html/$ page38061943.html [NC]
+
+RewriteRule ^novostroika2$ page39375218.html [NC]
+RewriteRule ^novostroika2/$ page39375218.html [NC]
+
+RewriteRule ^buildtest$ page42625085.html [NC]
+RewriteRule ^buildtest/$ page42625085.html [NC]
+
+RewriteRule ^footer$ page42884155.html [NC]
+RewriteRule ^footer/$ page42884155.html [NC]
+
+RewriteRule ^oshibka$ page52048683.html [NC]
+RewriteRule ^oshibka/$ page52048683.html [NC]
+
+RewriteRule ^quizstroy$ page55192735.html [NC]
+RewriteRule ^quizstroy/$ page55192735.html [NC]
+
+RewriteRule ^quizmebel$ page55193637.html [NC]
+RewriteRule ^quizmebel/$ page55193637.html [NC]
+
+RewriteRule ^agreement$ page90290286.html [NC]
+RewriteRule ^agreement/$ page90290286.html [NC]
+
+RewriteRule ^cookie-files$ page90298606.html [NC]
+RewriteRule ^cookie-files/$ page90298606.html [NC]
+
+RewriteRule ^members/ ma_start.html [NC,L]
+
+

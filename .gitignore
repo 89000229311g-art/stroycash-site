@@ -1,0 +1,10 @@
+# Large media files (already on server, don't commit)
+stroycash/images/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets (never commit)
+.env
+*.env

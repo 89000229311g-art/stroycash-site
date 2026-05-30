@@ -1,0 +1,33 @@
+services:
+  remont-site:
+    image: nginx:alpine
+    container_name: remont-site
+    restart: unless-stopped
+    volumes:
+      - /var/www/remont.stroycash.ru:/var/www/html:ro
+      - /root/stroycash-remont/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks: [web, remont-internal]
+    depends_on: [php]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.remont.rule=Host(`remont.stroycash.ru`)"
+      - "traefik.http.routers.remont.entrypoints=websecure"
+      - "traefik.http.routers.remont.tls=true"
+      - "traefik.http.routers.remont.tls.certresolver=myresolver"
+      - "traefik.http.services.remont.loadbalancer.server.port=80"
+      - "traefik.http.routers.remont-http.rule=Host(`remont.stroycash.ru`)"
+      - "traefik.http.routers.remont-http.entrypoints=web"
+      - "traefik.http.routers.remont-http.middlewares=https-redirect"
+      - "traefik.docker.network=web"
+
+  php:
+    image: php:8.2-fpm-alpine
+    container_name: remont-php
+    restart: unless-stopped
+    volumes:
+      - /var/www/remont.stroycash.ru:/var/www/html
+    networks: [remont-internal]
+
+networks:
+  web: {external: true}
+  remont-internal: {driver: bridge}
