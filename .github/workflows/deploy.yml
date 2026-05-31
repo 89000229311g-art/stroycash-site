@@ -16,13 +16,15 @@ jobs:
       - name: Create remote dirs
         run: |
           sshpass -p '${{ secrets.SERVER_PASS }}' ssh \
-            -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 22 \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=30 \
+            -p 22 \
             root@185.154.52.237 \
             "mkdir -p /var/www/remont.stroycash.ru /root/stroycash-remont"
 
-      - name: Deploy HTML/CSS/JS files (without images — они уже на сервере)
+      - name: Deploy HTML/CSS/JS files
         run: |
-          sshpass -p '${{ secrets.SERVER_PASS }}' rsync -avz \
+          sshpass -p '${{ secrets.SERVER_PASS }}' rsync -avz --delete \
             -e "ssh -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 22" \
             --exclude='images/' \
             stroycash/ \
@@ -31,33 +33,17 @@ jobs:
       - name: Deploy nginx.conf
         run: |
           sshpass -p '${{ secrets.SERVER_PASS }}' scp \
-            -o StrictHostKeyChecking=no -o ConnectTimeout=30 -P 22 \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=30 \
+            -P 22 \
             nginx.conf \
             root@185.154.52.237:/root/stroycash-remont/nginx.conf
-
-      - name: Convert images to WebP on server (пропускает уже сконвертированные)
-        run: |
-          sshpass -p '${{ secrets.SERVER_PASS }}' ssh \
-            -o StrictHostKeyChecking=no -o ConnectTimeout=120 -p 22 \
-            root@185.154.52.237 \
-            "set -e;
-             IMG_DIR=/var/www/remont.stroycash.ru/images;
-             [ -d \"\$IMG_DIR\" ] || { echo 'images dir not found'; exit 0; };
-             which cwebp >/dev/null 2>&1 || apt-get install -y webp -qq;
-             count=0; skip=0;
-             for f in \"\$IMG_DIR\"/*.jpg \"\$IMG_DIR\"/*.jpeg \"\$IMG_DIR\"/*.png; do
-               [ -f \"\$f\" ] || continue;
-               dst=\"\$f.webp\";
-               if [ -f \"\$dst\" ]; then skip=\$((skip+1)); continue; fi;
-               cwebp -q 82 -mt \"\$f\" -o \"\$dst\" -quiet 2>/dev/null && count=\$((count+1));
-             done;
-             echo \"WebP: конвертировано=\${count}, пропущено=\${skip}\";"
 
       - name: Reload nginx
         run: |
           sshpass -p '${{ secrets.SERVER_PASS }}' ssh \
-            -o StrictHostKeyChecking=no -o ConnectTimeout=30 -p 22 \
+            -o StrictHostKeyChecking=no \
+            -o ConnectTimeout=30 \
+            -p 22 \
             root@185.154.52.237 \
-            "docker exec remont-site nginx -s reload 2>/dev/null \
-             && echo 'nginx reloaded' \
-             || echo 'nginx reload skipped (container not running)'"
+            "docker exec remont-site nginx -s reload 2>/dev/null && echo 'nginx reloaded' || echo 'nginx reload skipped (container not running)'"
