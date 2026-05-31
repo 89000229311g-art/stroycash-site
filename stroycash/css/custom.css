@@ -1,0 +1,142 @@
+/* ================================================================
+   СтройКэш — custom.css
+   Глобальные улучшения поверх Tilda
+   ================================================================ */
+
+:root {
+  --sc-blue: #4348bd;
+  --sc-blue-dark: #3538a0;
+  --sc-orange: #fa876b;
+  --sc-black: #0d0d0d;
+  --sc-radius: 10px;
+  --sc-shadow: 0 8px 32px rgba(0,0,0,.18);
+  --sc-transition: .22s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── Производительность ────────────────────────────────── */
+html { scroll-behavior: smooth; }
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* Все img без loading="lazy" получают его через JS,
+   но CSS preloads защищают критические изображения */
+img { content-visibility: auto; }
+
+/* ── Кастомный скроллбар (Chrome/Edge) ────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: var(--sc-blue); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sc-orange); }
+
+/* ── Прогресс-бар чтения ──────────────────────────────── */
+#sc-reading-progress {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99999;
+  height: 3px; background: transparent; pointer-events: none;
+}
+#sc-reading-progress-bar {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--sc-blue), var(--sc-orange));
+  transition: width .1s linear;
+  box-shadow: 0 0 8px rgba(67,72,189,.6);
+}
+
+/* ── Floating CTA ─────────────────────────────────────── */
+#sc-float {
+  position: fixed; bottom: 24px; right: 20px; z-index: 9999;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+}
+.sc-float-btn {
+  width: 54px; height: 54px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.3);
+  transition: transform var(--sc-transition), box-shadow var(--sc-transition);
+  text-decoration: none; border: none; cursor: pointer;
+  animation: sc-float-in .4s ease both;
+}
+.sc-float-btn:hover { transform: scale(1.12); box-shadow: 0 8px 28px rgba(0,0,0,.4); }
+.sc-float-btn svg { width: 26px; height: 26px; fill: #fff; }
+
+.sc-float-btn--wa { background: #25D366; }
+.sc-float-btn--tg { background: #2AABEE; }
+.sc-float-btn--top {
+  background: var(--sc-blue); opacity: 0; pointer-events: none;
+  transition: opacity var(--sc-transition), transform var(--sc-transition);
+  width: 46px; height: 46px;
+}
+.sc-float-btn--top.visible { opacity: 1; pointer-events: auto; }
+
+.sc-float-label {
+  position: absolute; right: 62px; background: rgba(0,0,0,.82);
+  color: #fff; font-size: 12px; padding: 5px 10px; border-radius: 6px;
+  white-space: nowrap; pointer-events: none; opacity: 0;
+  transition: opacity .2s; backdrop-filter: blur(4px);
+}
+.sc-float-btn:hover .sc-float-label { opacity: 1; }
+
+@keyframes sc-float-in {
+  from { opacity: 0; transform: translateY(20px) scale(.8); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Кнопки Tilda — современный hover ─────────────────── */
+.t-btn, [class*="t-btn"] {
+  transition: transform var(--sc-transition),
+              box-shadow var(--sc-transition),
+              background var(--sc-transition) !important;
+}
+.t-btn:hover, [class*="t-btn"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(67,72,189,.35) !important;
+}
+.t-btn:active, [class*="t-btn"]:active {
+  transform: translateY(0) !important;
+}
+
+/* ── Карточки Tilda — hover ────────────────────────────── */
+.t-col, .t-card, .t-store__prod-img-wrap,
+[class*="tn-elem"][class*="image"] {
+  transition: transform var(--sc-transition),
+              box-shadow var(--sc-transition) !important;
+}
+
+/* ── Анимация появления при скролле ───────────────────── */
+.sc-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.sc-reveal.sc-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Анимированные счётчики ────────────────────────────── */
+.sc-counter { display: inline-block; }
+
+/* ── Форма — улучшения ─────────────────────────────────── */
+input[type=text], input[type=email], input[type=tel],
+textarea, .t-input {
+  transition: border-color var(--sc-transition),
+              box-shadow var(--sc-transition) !important;
+}
+input[type=text]:focus, input[type=email]:focus,
+input[type=tel]:focus, textarea:focus, .t-input:focus {
+  box-shadow: 0 0 0 3px rgba(67,72,189,.2) !important;
+  outline: none !important;
+}
+
+/* ── Toast-уведомление ─────────────────────────────────── */
+#sc-toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+  background: #1a1a2e; color: #fff; padding: 12px 24px;
+  border-radius: 8px; font-size: 14px; z-index: 99998;
+  box-shadow: var(--sc-shadow); opacity: 0;
+  transition: opacity .3s; pointer-events: none;
+  border-left: 3px solid var(--sc-blue);
+}
+#sc-toast.show { opacity: 1; }
+
+/* ── Мобильная адаптация ───────────────────────────────── */
+@media (max-width: 640px) {
+  #sc-float { bottom: 16px; right: 14px; }
+  .sc-float-btn { width: 50px; height: 50px; }
+}
