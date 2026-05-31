@@ -1,15 +1,60 @@
 User-Agent: *
-Disallow: /page34361870.html
+
+# Служебные страницы — не индексировать
 Disallow: /thankyou
+Disallow: /footer
+Disallow: /oshibka
+Disallow: /agreement
+Disallow: /cookie-files
+Disallow: /buildtest
+Disallow: /remont-old
+Disallow: /remont2
+Disallow: /novostroika2
+
+# Сырые файлы Tilda (дублированный контент — чистые URL предпочтительны)
+Disallow: /page26919559.html
+Disallow: /page27176351.html
+Disallow: /page27262068.html
+Disallow: /page27262071.html
+Disallow: /page27262073.html
+Disallow: /page27262075.html
+Disallow: /page27262080.html
+Disallow: /page30554334.html
+Disallow: /page34319973.html
+Disallow: /page34361870.html
+Disallow: /page34448199.html
+Disallow: /page34448265.html
+Disallow: /page34448315.html
+Disallow: /page34448363.html
+Disallow: /page34448395.html
+Disallow: /page34448443.html
+Disallow: /page34448501.html
+Disallow: /page34448545.html
+Disallow: /page34448619.html
+Disallow: /page34448654.html
+Disallow: /page34511772.html
+Disallow: /page36631847.html
+Disallow: /page36985663.html
+Disallow: /page37346001.html
+Disallow: /page37551065.html
+Disallow: /page37914626.html
+Disallow: /page38061943.html
+Disallow: /page39349977.html
+Disallow: /page39375218.html
+Disallow: /page41717702.html
+Disallow: /page42625085.html
 Disallow: /page42884153.html
 Disallow: /page42884155.html
-Disallow: /footer
+Disallow: /page51428489.html
 Disallow: /page52048683.html
-Disallow: /oshibka
+Disallow: /page55131289.html
+Disallow: /page55192735.html
+Disallow: /page55193637.html
+Disallow: /page55196169.html
 Disallow: /page90290286.html
-Disallow: /agreement
 Disallow: /page90298606.html
-Disallow: /cookie-files
+
+# Tilda системные пути
 Disallow: /tilda/form*
 Disallow: /tilda/rec*
 Disallow: /tilda/click*
@@ -20,7 +65,7 @@ Disallow: /tilda/product*
 Disallow: /tilda/event*
 Disallow: /members/login*
 Disallow: /members/signup*
-Disallow:
-
+Disallow: /data/
 
 Sitemap: https://remont.stroycash.ru/sitemap.xml
+LLMs: https://remont.stroycash.ru/llms.txt
