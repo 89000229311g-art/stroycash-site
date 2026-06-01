@@ -23,20 +23,15 @@
       if (!list) continue;
       if (list.querySelector('[href="/blog"]')) return;
       var existingLink = list.querySelector('a');
-      var fs = '18px', fw = '500', fc = '#494949', ff = "'Gilroy',Arial,sans-serif";
-      if (existingLink) {
-        var cs = window.getComputedStyle(existingLink);
-        fs = cs.fontSize || fs;
-        fw = cs.fontWeight || fw;
-        fc = cs.color || fc;
-        ff = cs.fontFamily || ff;
-      }
       var link = document.createElement('a');
       link.href = '/blog';
       link.className = existingLink ? existingLink.className : 't-menu__link-item';
       link.textContent = 'Блог';
-      link.style.cssText = 'font-family:' + ff + ';font-size:' + fs + ';font-weight:' + fw + ';color:' + fc + ';';
-      list.appendChild(link);
+      // Оборачиваем в <li> — T450 меню рендерит <li class="t450__list_item"><a>
+      var li = document.createElement('li');
+      li.className = 't450__list_item';
+      li.appendChild(link);
+      list.appendChild(li);
       return;
     }
   }

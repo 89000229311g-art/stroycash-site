@@ -135,6 +135,12 @@ input[type=tel]:focus, textarea:focus, .t-input:focus {
 }
 #sc-toast.show { opacity: 1; }
 
+/* ── Tilda fixed-header spacer (T123) ──────────────────── */
+/* Tilda JS устанавливает высоту асинхронно; зафиксируем явно,
+   чтобы контент не скрывался под хедером до загрузки скриптов */
+#rec769175473 { min-height: 90px; }
+@media screen and (max-width: 479px) { #rec769175473 { min-height: 80px; } }
+
 /* ── Мобильная адаптация ───────────────────────────────── */
 @media (max-width: 640px) {
   #sc-float { bottom: 16px; right: 14px; }
