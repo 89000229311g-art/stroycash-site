@@ -1,17 +1,22 @@
 User-Agent: *
 
-# Служебные страницы — не индексировать
+# ── Закрытые служебные страницы ──────────────────────────
 Disallow: /thankyou
 Disallow: /footer
 Disallow: /oshibka
 Disallow: /agreement
 Disallow: /cookie-files
+Disallow: /policy
 Disallow: /buildtest
+Disallow: /quizstroy
 Disallow: /remont-old
 Disallow: /remont2
 Disallow: /novostroika2
+Disallow: /quiz
+Disallow: /quizmebel
+Disallow: /build
 
-# Сырые файлы Tilda (дублированный контент — чистые URL предпочтительны)
+# ── Дубли (чистые URL предпочтительны) ───────────────────
 Disallow: /page26919559.html
 Disallow: /page27176351.html
 Disallow: /page27262068.html
@@ -53,8 +58,10 @@ Disallow: /page55193637.html
 Disallow: /page55196169.html
 Disallow: /page90290286.html
 Disallow: /page90298606.html
+Disallow: /page_build_stub.html
+Disallow: /page_main.html
 
-# Tilda системные пути
+# ── Системные пути Tilda ──────────────────────────────────
 Disallow: /tilda/form*
 Disallow: /tilda/rec*
 Disallow: /tilda/click*
@@ -67,5 +74,42 @@ Disallow: /members/login*
 Disallow: /members/signup*
 Disallow: /data/
 
+# ── Спецдирективы для поисковых ботов ────────────────────
+User-Agent: Googlebot
+Crawl-delay: 0
+
+User-Agent: Yandex
+Crawl-delay: 1
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term
+
+# ── ИИ-краулеры (разрешены для индексации) ───────────────
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: ChatGPT-User
+Allow: /
+
+User-Agent: anthropic-ai
+Allow: /
+
+User-Agent: Claude-Web
+Allow: /
+
+User-Agent: PerplexityBot
+Allow: /
+
+User-Agent: YouBot
+Allow: /
+
+User-Agent: cohere-ai
+Allow: /
+
+User-Agent: Google-Extended
+Allow: /
+
+User-Agent: CCBot
+Allow: /
+
+# ── Карты сайта и AI-файл ─────────────────────────────────
 Sitemap: https://remont.stroycash.ru/sitemap.xml
 LLMs: https://remont.stroycash.ru/llms.txt

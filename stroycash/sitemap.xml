@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://remont.stroycash.ru/</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://remont.stroycash.ru/remont</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://remont.stroycash.ru/build</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://remont.stroycash.ru/remontdomov</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/klinika</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/vanna</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/sanuzel</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/novostroika</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/kotedzh</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/ofisov</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/pomesheniya</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/stomatologiy</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/otdelka</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/engineering</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/disign</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/shtukaturka</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/styajka</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/mebel</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/portfolio</loc><lastmod>2026-05-31</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/about</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://remont.stroycash.ru/team</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://remont.stroycash.ru/calculator</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://remont.stroycash.ru/stoimost-remonta</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://remont.stroycash.ru/chto-vhodit-v-remont</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/remont-v-novostrojke</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/remont-vannoj-cena</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/kak-vybrat-stroitelnuyu-kompaniyu</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://remont.stroycash.ru/stroitelstvo-doma-podmoskovye</loc><lastmod>2026-05-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Главная / Блог -->
+  <url><loc>https://remont.stroycash.ru/</loc><lastmod>2026-06-01</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+
+  <!-- Основные услуги -->
+  <url><loc>https://remont.stroycash.ru/remont</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://remont.stroycash.ru/remontdomov</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://remont.stroycash.ru/klinika</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://remont.stroycash.ru/stomatologiy</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://remont.stroycash.ru/disign</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.80</priority></url>
+
+  <!-- Услуги по объектам -->
+  <url><loc>https://remont.stroycash.ru/vanna</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://remont.stroycash.ru/sanuzel</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://remont.stroycash.ru/novostroika</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://remont.stroycash.ru/kotedzh</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://remont.stroycash.ru/ofisov</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://remont.stroycash.ru/pomesheniya</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://remont.stroycash.ru/otdelka</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- Спецуслуги -->
+  <url><loc>https://remont.stroycash.ru/engineering</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>
+  <url><loc>https://remont.stroycash.ru/shtukaturka</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://remont.stroycash.ru/styajka</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://remont.stroycash.ru/mebel</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.70</priority></url>
+
+  <!-- Компания -->
+  <url><loc>https://remont.stroycash.ru/portfolio</loc><lastmod>2026-06-01</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://remont.stroycash.ru/about</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.65</priority></url>
+  <url><loc>https://remont.stroycash.ru/team</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.60</priority></url>
+
+  <!-- Статьи (высокий приоритет для SEO) -->
+  <url><loc>https://remont.stroycash.ru/stoimost-remonta</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.90</priority></url>
+  <url><loc>https://remont.stroycash.ru/chto-vhodit-v-remont</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://remont.stroycash.ru/remont-v-novostrojke</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://remont.stroycash.ru/remont-vannoj-cena</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
+  <url><loc>https://remont.stroycash.ru/kak-vybrat-stroitelnuyu-kompaniyu</loc><lastmod>2026-06-01</lastmod><changefreq>monthly</changefreq><priority>0.80</priority></url>
 </urlset>

@@ -159,6 +159,155 @@
     });
   }
 
+  /* ── 7. SCHEMA.ORG JSON-LD ────────────────────────────── */
+  function injectSchema() {
+    if (document.querySelector('script[data-sc-schema]')) return;
+
+    var url = window.location.pathname;
+
+    // ── LocalBusiness (все страницы) ──
+    var org = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["LocalBusiness","HomeAndConstructionBusiness"],
+          "@id": "https://remont.stroycash.ru/#business",
+          "name": "СтройКэш",
+          "alternateName": "Stroycash",
+          "description": "Ремонт квартир, клиник, офисов и коттеджей под ключ в Москве и Московской области. Работаем с 2014 года. Гарантия 5 лет.",
+          "url": "https://remont.stroycash.ru",
+          "telephone": ["+7-930-334-61-76", "+7-495-196-71-88"],
+          "email": "stroycash2020@mail.ru",
+          "foundingDate": "2014",
+          "image": "https://remont.stroycash.ru/images/tild6633-3964-4939-a339-663836623265_____.jpeg",
+          "logo": "https://remont.stroycash.ru/images/tild3533-3936-4535-a434-633133393263___stroy_cash_1.png",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Медицинская 4А",
+            "addressLocality": "Мытищи",
+            "addressRegion": "Московская область",
+            "postalCode": "141009",
+            "addressCountry": "RU"
+          },
+          "geo": {"@type":"GeoCoordinates","latitude":55.9042,"longitude":37.7303},
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "08:00",
+            "closes": "22:00"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "127",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "priceRange": "от 3 000 ₽/м²",
+          "currenciesAccepted": "RUB",
+          "areaServed": [
+            {"@type":"City","name":"Москва"},
+            {"@type":"State","name":"Московская область"}
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Услуги ремонта",
+            "itemListElement": [
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ремонт квартир под ключ"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"3000","priceCurrency":"RUB","unitText":"м²"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ремонт клиник и медцентров"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"4500","priceCurrency":"RUB","unitText":"м²"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ремонт офисов"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"2500","priceCurrency":"RUB","unitText":"м²"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Механизированная штукатурка"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"350","priceCurrency":"RUB","unitText":"м²"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Полусухая стяжка пола"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"300","priceCurrency":"RUB","unitText":"м²"}},
+              {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ремонт ванной комнаты"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"120000","priceCurrency":"RUB"}}
+            ]
+          },
+          "sameAs": ["https://t.me/StroyCashh"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://remont.stroycash.ru/#website",
+          "url": "https://remont.stroycash.ru",
+          "name": "СтройКэш — ремонт под ключ в Москве",
+          "publisher": {"@id":"https://remont.stroycash.ru/#business"},
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://remont.stroycash.ru/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    };
+
+    // ── FAQ (главная страница) ──
+    if (url === '/' || url === '/blog') {
+      org['@graph'].push({
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Сколько стоит ремонт квартиры под ключ в Москве?",
+            "acceptedAnswer": {"@type":"Answer","text":"В СтройКэш ремонт квартиры стоит от 3 000 ₽/м². Косметический — от 3 000 ₽/м², евроремонт — от 5 000 ₽/м², дизайнерский — от 8 000 ₽/м². Цена фиксируется в договоре. Замер и смета — бесплатно."}
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько времени занимает ремонт квартиры?",
+            "acceptedAnswer": {"@type":"Answer","text":"Косметический ремонт — 2–4 недели, евроремонт — 1–3 месяца, капитальный ремонт с перепланировкой — 2–4 месяца. Сроки фиксируются в договоре. За просрочку — штрафные санкции."}
+          },
+          {
+            "@type": "Question",
+            "name": "Нужна ли предоплата для заказа ремонта в СтройКэш?",
+            "acceptedAnswer": {"@type":"Answer","text":"Нет. СтройКэш работает без предоплаты. Оплата поэтапно по факту выполнения каждого этапа работ."}
+          },
+          {
+            "@type": "Question",
+            "name": "Какие гарантии даёт СтройКэш на ремонт?",
+            "acceptedAnswer": {"@type":"Answer","text":"Письменная гарантия 5 лет на все виды ремонтных работ. Гарантия прописывается в договоре."}
+          },
+          {
+            "@type": "Question",
+            "name": "Делает ли СтройКэш ремонт клиник и медицинских помещений?",
+            "acceptedAnswer": {"@type":"Answer","text":"Да. СтройКэш специализируется на ремонте клиник, медцентров и стоматологий с соблюдением требований СанПиН. Стоимость от 4 500 ₽/м²."}
+          },
+          {
+            "@type": "Question",
+            "name": "Работает ли СтройКэш в Подмосковье?",
+            "acceptedAnswer": {"@type":"Answer","text":"Да. Работаем по всей Московской области. Офис в Мытищах. Выезд замерщика бесплатно."}
+          }
+        ]
+      });
+    }
+
+    // ── Article schema для статей ──
+    var articleMeta = {
+      '/stoimost-remonta':      {name:'Сколько стоит ремонт квартиры в Москве в 2026 году', desc:'Актуальные цены ремонта квартир по видам и типам. Таблицы, советы.'},
+      '/chto-vhodit-v-remont':  {name:'Ремонт квартиры под ключ: что входит и этапы', desc:'Полный список работ, последовательность этапов, сроки.'},
+      '/remont-v-novostrojke':  {name:'Ремонт в новостройке: когда начинать', desc:'Усадка дома, типы отделки, ошибки при ремонте в новостройке.'},
+      '/remont-vannoj-cena':    {name:'Ремонт ванной комнаты: цены и сроки 2026', desc:'Стоимость по площади и классу отделки, советы.'},
+      '/kak-vybrat-stroitelnuyu-kompaniyu': {name:'Как выбрать ремонтную компанию: 7 критериев', desc:'Признаки надёжного подрядчика, красные флаги.'}
+    };
+    if (articleMeta[url]) {
+      var m = articleMeta[url];
+      org['@graph'].push({
+        "@type": "Article",
+        "headline": m.name,
+        "description": m.desc,
+        "author": {"@type":"Organization","name":"СтройКэш","url":"https://remont.stroycash.ru"},
+        "publisher": {"@id":"https://remont.stroycash.ru/#business"},
+        "datePublished": "2026-05-31",
+        "dateModified": "2026-06-01",
+        "url": "https://remont.stroycash.ru" + url,
+        "inLanguage": "ru-RU",
+        "isPartOf": {"@id":"https://remont.stroycash.ru/#website"}
+      });
+    }
+
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.setAttribute('data-sc-schema', '1');
+    s.textContent = JSON.stringify(org);
+    document.head.appendChild(s);
+  }
+
   /* ── INIT ─────────────────────────────────────────────── */
   function init() {
     addPreconnects();
@@ -167,6 +316,7 @@
     initScrollReveal();
     addBlogToMenu();
     hideBuildMenuItem();
+    injectSchema();
   }
 
   if (document.readyState === 'loading') {
