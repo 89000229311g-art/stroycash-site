@@ -150,6 +150,15 @@
     });
   }
 
+  /* ── 6. СТРОИТЕЛЬСТВО → doma.stroycash.ru ─────────────── */
+  function redirectBuildLinks() {
+    document.querySelectorAll('a[href$="/build"], a[href*="stroycash.ru/build"]').forEach(function(a) {
+      a.href = 'https://doma.stroycash.ru/#catalog';
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+  }
+
   /* ── INIT ─────────────────────────────────────────────── */
   function init() {
     addPreconnects();
@@ -157,6 +166,7 @@
     initReadingProgress();
     initScrollReveal();
     addBlogToMenu();
+    redirectBuildLinks();
   }
 
   if (document.readyState === 'loading') {
