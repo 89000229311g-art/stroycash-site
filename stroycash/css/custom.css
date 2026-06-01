@@ -55,8 +55,10 @@ img { content-visibility: auto; }
 .sc-float-btn:hover { transform: scale(1.12); box-shadow: 0 8px 28px rgba(0,0,0,.4); }
 .sc-float-btn svg { width: 26px; height: 26px; fill: #fff; }
 
-.sc-float-btn--wa { background: #25D366; }
-.sc-float-btn--tg { background: #2AABEE; }
+.sc-float-btn--wa  { background: #25D366; }
+.sc-float-btn--tg  { background: #2AABEE; }
+.sc-float-btn--vk  { background: #0077FF; }
+.sc-float-btn--max { background: linear-gradient(135deg, #FF6A00, #FF3CAC); }
 .sc-float-btn--top {
   background: var(--sc-blue); opacity: 0; pointer-events: none;
   transition: opacity var(--sc-transition), transform var(--sc-transition);
