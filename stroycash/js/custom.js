@@ -37,21 +37,15 @@
   }
 
   function addBlogToMenu() {
-    var done = false;
-    function tryInject() {
-      if (done) return;
-      injectBlogLink();
-      if (document.querySelector('[href="/blog"]')) done = true;
-    }
-    tryInject();
-    if (done) return;
+    injectBlogLink();
     if ('MutationObserver' in window) {
-      var obs = new MutationObserver(function() { tryInject(); if (done) obs.disconnect(); });
+      // Продолжаем следить: Tilda lazy-loading может перезаписать меню
+      var obs = new MutationObserver(function() { injectBlogLink(); });
       obs.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function() { obs.disconnect(); }, 10000);
+      setTimeout(function() { obs.disconnect(); }, 15000);
     } else {
-      var t = setInterval(function() { tryInject(); if (done) clearInterval(t); }, 300);
-      setTimeout(function() { clearInterval(t); }, 10000);
+      var t = setInterval(function() { injectBlogLink(); }, 300);
+      setTimeout(function() { clearInterval(t); }, 15000);
     }
   }
 
