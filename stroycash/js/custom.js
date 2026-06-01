@@ -5,24 +5,56 @@
   'use strict';
 
   /* ── 1. ДОБАВЛЯЕМ «БЛОГ» В TILDA-МЕНЮ ─────────────────── */
-  function addBlogToMenu() {
-    // Tilda рендерит меню асинхронно — ждём появления
-    var attempts = 0;
-    var timer = setInterval(function () {
-      attempts++;
-      var list = document.querySelector('.t450__list, .t-menu__list, [class*="t450__list"]');
-      if (!list && attempts < 30) return;
-      clearInterval(timer);
-      if (!list) return;
-      // Уже добавлен?
-      if (list.querySelector('[href="/blog"]')) return;
+  function injectBlogLink() {
+    // Несколько возможных селекторов в разных версиях Tilda
+    var SELECTORS = ['.t450__list', '.t-menu__list', '.t978__menu-list', '.t794__list'];
+    for (var i = 0; i < SELECTORS.length; i++) {
+      var list = document.querySelector(SELECTORS[i]);
+      if (!list) continue;
+      if (list.querySelector('[href="/blog"]')) return; // уже есть
+      // Читаем стиль существующего пункта меню
+      var existingLink = list.querySelector('a');
+      var fs = '18px', fw = '500', fc = '#494949', ff = "'Gilroy',Arial,sans-serif";
+      if (existingLink) {
+        var cs = window.getComputedStyle(existingLink);
+        fs = cs.fontSize || fs;
+        fw = cs.fontWeight || fw;
+        fc = cs.color || fc;
+        ff = cs.fontFamily || ff;
+      }
       var link = document.createElement('a');
       link.href = '/blog';
-      link.className = 't-menu__link-item';
+      link.className = existingLink ? existingLink.className : 't-menu__link-item';
       link.textContent = 'Блог';
-      link.style.cssText = 'font-family:inherit;font-size:inherit;color:inherit;font-weight:inherit;';
+      link.style.cssText = 'font-family:' + ff + ';font-size:' + fs + ';font-weight:' + fw + ';color:' + fc + ';';
       list.appendChild(link);
-    }, 200);
+      return;
+    }
+  }
+
+  function addBlogToMenu() {
+    // MutationObserver — реагируем на появление меню в DOM (надёжнее setTimeout)
+    var done = false;
+    function tryInject() {
+      if (done) return;
+      injectBlogLink();
+      // Проверяем что вставлено
+      if (document.querySelector('[href="/blog"]')) done = true;
+    }
+    // Сразу пробуем
+    tryInject();
+    if (done) return;
+    // Наблюдаем за изменениями DOM
+    if ('MutationObserver' in window) {
+      var obs = new MutationObserver(function() { tryInject(); if (done) obs.disconnect(); });
+      obs.observe(document.body, { childList: true, subtree: true });
+      // Fallback — останавливаем через 10 секунд
+      setTimeout(function() { obs.disconnect(); }, 10000);
+    } else {
+      // Fallback для старых браузеров
+      var t = setInterval(function() { tryInject(); if (done) clearInterval(t); }, 300);
+      setTimeout(function() { clearInterval(t); }, 10000);
+    }
   }
 
   /* ── 2. FLOATING CTA ──────────────────────────────────── */
