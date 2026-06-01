@@ -84,7 +84,7 @@
 
       // VK — всегда (Tilda не добавляет VK)
       var vk = document.createElement('a');
-      vk.href = 'https://vk.com/stroy_cash';
+      vk.href = 'https://vk.me/stroy_cash';
       vk.target = '_blank'; vk.rel = 'noopener';
       vk.setAttribute('aria-label', 'ВКонтакте');
       vk.className = 'sc-float-btn sc-float-btn--vk';
@@ -93,7 +93,7 @@
 
       // MAX — всегда (Tilda не добавляет MAX)
       var max = document.createElement('a');
-      max.href = 'https://vk.me/stroy_cash';
+      max.href = 'https://vk.me/+79303346176';
       max.target = '_blank'; max.rel = 'noopener';
       max.setAttribute('aria-label', 'MAX');
       max.className = 'sc-float-btn sc-float-btn--max';
@@ -159,14 +159,9 @@
     document.querySelectorAll('.sc-reveal').forEach(function (el) { obs.observe(el); });
   }
 
-  /* ── 5. PRECONNECT для Tilda CDN ───────────────────────── */
+  /* ── 5. PRECONNECT (CDN независимость) ───────────────────────── */
   function addPreconnects() {
-    ['https://ws.tildacdn.com', 'https://neo.tildacdn.com', 'https://static.tildacdn.com'].forEach(function (url) {
-      if (document.querySelector('link[href="' + url + '"]')) return;
-      var l = document.createElement('link');
-      l.rel = 'preconnect'; l.href = url; l.crossOrigin = 'anonymous';
-      document.head.appendChild(l);
-    });
+    // CDN Тильды удалён, preconnect не нужен
   }
 
   /* ── 6. СКРЫТЬ «Строительство» из меню ────────────────── */
