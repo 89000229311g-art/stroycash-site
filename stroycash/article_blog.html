@@ -26,37 +26,197 @@
 @font-face{font-family:'Gilroy';src:url('https://static.tildacdn.com/tild6431-6336-4239-b033-633262616565/Gilroy-Medium.woff') format('woff');font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:'Gilroy';src:url('https://static.tildacdn.com/tild3565-3965-4163-b464-653438323532/Gilroy-Semibold.woff') format('woff');font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:'Gilroy';src:url('https://static.tildacdn.com/tild6238-6465-4236-b932-646436653938/Gilroy-Bold.woff') format('woff');font-weight:700;font-style:normal;font-display:swap}
-body,h1,h2,h3,p,a,li,td,th,span,div{font-family:'Gilroy',Arial,sans-serif}
-/* Стиль страницы контента (под хедером Tilda) */
-.sc-page-content{padding-top:0}
-</style>
-<style>
-/* ── Сетка блога ─────────────────────────────────── */
-.sc-blog-hero{background:#1a1a2e;padding:56px 20px 48px;text-align:center}
-.sc-blog-hero h1{color:#fff;font-size:clamp(28px,4vw,44px);font-weight:700;margin-bottom:12px;font-family:'Gilroy',Arial,sans-serif}
-.sc-blog-hero p{color:#9ab;font-size:18px;max-width:560px;margin:0 auto;font-family:'Gilroy',Arial,sans-serif}
-.sc-blog-wrap{max-width:1100px;margin:0 auto;padding:48px 20px 80px}
-.sc-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
-.sc-card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,.07);transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column;text-decoration:none;color:inherit}
-.sc-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(67,72,189,.15)}
-.sc-card-thumb{height:180px;background:linear-gradient(135deg,#1a1a2e,#0f3460);display:flex;align-items:center;justify-content:center;font-size:52px}
-.sc-card-body{padding:24px;flex:1;display:flex;flex-direction:column;gap:10px}
-.sc-badge{background:#4348bd;color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:3px 9px;border-radius:4px;display:inline-block;font-family:'Gilroy',Arial,sans-serif}
-.sc-card-meta{display:flex;gap:12px;align-items:center;font-size:12px;color:#888;font-family:'Gilroy',Arial,sans-serif}
-.sc-card h2{font-size:17px;font-weight:700;color:#111;line-height:1.4;font-family:'Gilroy',Arial,sans-serif}
-.sc-card p{font-size:14px;color:#666;line-height:1.6;flex:1;font-family:'Gilroy',Arial,sans-serif}
-.sc-card-link{color:#4348bd;font-size:14px;font-weight:600;margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:6px;font-family:'Gilroy',Arial,sans-serif}
-.sc-card-link svg{transition:transform .2s}
-.sc-card:hover .sc-card-link svg{transform:translateX(4px)}
-.sc-cta-block{background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:16px;padding:48px 32px;text-align:center;margin-top:56px}
-.sc-cta-block h2{color:#fff;font-size:clamp(20px,3vw,28px);font-weight:700;margin-bottom:12px;font-family:'Gilroy',Arial,sans-serif}
-.sc-cta-block p{color:#9ab;margin-bottom:28px;font-size:16px;font-family:'Gilroy',Arial,sans-serif}
-.sc-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.sc-btn-p{background:#4348bd;color:#fff;padding:14px 28px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;font-family:'Gilroy',Arial,sans-serif;transition:transform .2s,box-shadow .2s;display:inline-block}
-.sc-btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(67,72,189,.4)}
-.sc-btn-o{background:transparent;color:#fff;padding:14px 24px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,.4);font-family:'Gilroy',Arial,sans-serif;display:inline-block}
-.sc-btn-o:hover{border-color:#fff}
-@media(max-width:640px){.sc-blog-grid{grid-template-columns:1fr}.sc-cta-block{padding:28px 16px}}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Gilroy',Arial,sans-serif;background:#f5f5f7;color:#1d1d1f;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* ── Hero ──────────────────────────────────────────── */
+.blog-hero{
+  background:#000;
+  padding:64px 20px 56px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.blog-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(67,72,189,.35) 0%,transparent 70%);
+  pointer-events:none;
+}
+.blog-hero-tag{
+  display:inline-block;background:rgba(67,72,189,.2);color:#7b7ff5;
+  font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:6px 16px;border-radius:100px;border:1px solid rgba(67,72,189,.3);
+  margin-bottom:20px;font-family:'Gilroy',Arial,sans-serif;
+}
+.blog-hero h1{
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:clamp(32px,5vw,56px);
+  font-weight:700;color:#fff;
+  line-height:1.15;
+  margin-bottom:16px;
+  letter-spacing:-.5px;
+}
+.blog-hero p{
+  font-family:'Gilroy',Arial,sans-serif;
+  color:rgba(255,255,255,.55);
+  font-size:18px;max-width:520px;margin:0 auto;
+  line-height:1.6;
+}
+
+/* ── Контейнер ─────────────────────────────────────── */
+.blog-wrap{max-width:1140px;margin:0 auto;padding:56px 24px 96px}
+
+/* ── Заголовок раздела ──────────────────────────────── */
+.blog-section-title{
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:13px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;color:#6c70de;margin-bottom:32px;
+}
+
+/* ── Сетка карточек ─────────────────────────────────── */
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+@media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.blog-grid{grid-template-columns:1fr}}
+
+/* ── Карточка ───────────────────────────────────────── */
+.blog-card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .25s ease,box-shadow .25s ease;
+  box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);
+}
+.blog-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(67,72,189,.12),0 4px 16px rgba(0,0,0,.08);
+}
+
+/* ── Превью карточки ────────────────────────────────── */
+.blog-card-thumb{
+  height:200px;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+/* Уникальные градиенты для каждой категории */
+.blog-card-thumb--price{background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%)}
+.blog-card-thumb--stages{background:linear-gradient(135deg,#141e30 0%,#243b55 100%)}
+.blog-card-thumb--new{background:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%)}
+.blog-card-thumb--bath{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)}
+.blog-card-thumb--choice{background:linear-gradient(135deg,#11998e 0%,#38ef7d 100%)}
+.blog-card-thumb--build{background:linear-gradient(135deg,#373b44 0%,#4286f4 100%)}
+
+.blog-card-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.4));
+}
+.blog-card-thumb-icon{
+  width:72px;height:72px;
+  background:rgba(255,255,255,.12);
+  border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.15);
+  z-index:1;
+}
+.blog-card-thumb-icon svg{width:36px;height:36px;fill:rgba(255,255,255,.9)}
+
+/* ── Мета-строка ────────────────────────────────────── */
+.blog-card-body{padding:24px;flex:1;display:flex;flex-direction:column;gap:12px}
+
+.blog-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:4px 10px;border-radius:100px;
+}
+.blog-badge--price{background:#fff3cd;color:#856404}
+.blog-badge--stages{background:#cfe2ff;color:#084298}
+.blog-badge--new{background:#e0cffc;color:#432874}
+.blog-badge--bath{background:#cff4fc;color:#0a4c52}
+.blog-badge--choice{background:#d1e7dd;color:#0a3622}
+.blog-badge--build{background:#f8d7da;color:#842029}
+
+.blog-card-meta{
+  display:flex;align-items:center;gap:8px;
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:12px;color:#6e6e73;
+}
+.blog-card-meta-dot{width:3px;height:3px;background:#c7c7cc;border-radius:50%;flex-shrink:0}
+
+.blog-card h2{
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:17px;font-weight:700;color:#1d1d1f;
+  line-height:1.4;
+}
+.blog-card p{
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:14px;color:#6e6e73;line-height:1.65;flex:1;
+}
+.blog-card-link{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:14px;font-weight:600;color:#4348bd;
+  margin-top:4px;
+  transition:gap .2s;
+}
+.blog-card:hover .blog-card-link{gap:10px}
+.blog-card-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ── CTA-блок ───────────────────────────────────────── */
+.blog-cta{
+  margin-top:64px;
+  background:#000;
+  border-radius:20px;
+  padding:56px 40px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.blog-cta::before{
+  content:'';position:absolute;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(67,72,189,.25) 0%,transparent 70%);
+  top:-200px;left:50%;transform:translateX(-50%);
+  pointer-events:none;
+}
+.blog-cta h2{
+  font-family:'Gilroy',Arial,sans-serif;
+  font-size:clamp(22px,3vw,32px);font-weight:700;color:#fff;
+  margin-bottom:12px;position:relative;
+}
+.blog-cta p{
+  font-family:'Gilroy',Arial,sans-serif;
+  color:rgba(255,255,255,.5);font-size:16px;
+  margin-bottom:32px;position:relative;
+}
+.blog-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-primary{
+  font-family:'Gilroy',Arial,sans-serif;
+  background:#4348bd;color:#fff;
+  padding:15px 32px;border-radius:10px;
+  font-size:15px;font-weight:700;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  display:inline-block;
+}
+.btn-primary:hover{background:#3538a0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(67,72,189,.4)}
+.btn-outline{
+  font-family:'Gilroy',Arial,sans-serif;
+  background:rgba(255,255,255,.08);color:#fff;
+  padding:15px 28px;border-radius:10px;
+  font-size:15px;font-weight:600;
+  border:1px solid rgba(255,255,255,.15);
+  transition:background .2s,border-color .2s;
+  display:inline-block;
+}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3)}
+
+@media(max-width:640px){.blog-cta{padding:36px 20px}.blog-cta-btns{flex-direction:column;align-items:center}}
 </style>
 </head>
 <body>
@@ -137,84 +297,116 @@ xhr.send();}});});</script> </ul> </div> </div> <div class="t450__right_buttons"
 class="t-btn t-btnflex t-btnflex_type_button t-btnflex_sm"
 href="#popup:myform"> <span class="t-btnflex__text">Перезвоним за 1 минуту</span> <style>#rec693457838 .t-btnflex.t-btnflex_type_button {color:#ffffff;background-color:#4348bd;border-style:solid !important;border-color:#ffffff !important;--border-width:1px;border-radius:10px;box-shadow:none !important;font-family:Gilroy;font-weight:600;transition-duration:0.2s;transition-property:background-color,color,border-color,box-shadow,opacity,transform;transition-timing-function:ease-in-out;}@media (hover:hover) {#rec693457838 .t-btnflex.t-btnflex_type_button:not(.t-animate_no-hover):hover {background-color:#595dc2 !important;}#rec693457838 .t-btnflex.t-btnflex_type_button:not(.t-animate_no-hover):focus-visible {background-color:#595dc2 !important;}}</style> </a> </div> </div> </div> </div> </div> </div> </div> <script>t_onReady(function() {var rec=document.querySelector('#rec693457838');if(!rec) return;rec.setAttribute('data-animationappear','off');rec.style.opacity=1;t_onFuncLoad('t450_initMenu',function() {t450_initMenu('693457838');});t_onFuncLoad('t_menuWidgets__init',function() {t_menuWidgets__init('693457838');});});</script> <style>#rec693457838 .t-menu__link-item{}@supports (overflow:-webkit-marquee) and (justify-content:inherit){#rec693457838 .t-menu__link-item,#rec693457838 .t-menu__link-item.t-active{opacity:1 !important;}}</style> <style> #rec693457838 a.t-menu__link-item{font-size:18px;color:#494949;font-family:'Gilroy';font-weight:500;}</style> <style> #rec693457838 .t450__right_langs_lang a{color:#494949;font-family:'Gilroy';font-weight:500;}</style> </div> </header>
 
-<div class="sc-blog-hero">
-  <h1>Блог о ремонте и строительстве</h1>
-  <p>Экспертные статьи от специалистов СтройКэш — цены, советы, ошибки и лайфхаки</p>
+<div class="blog-hero">
+  <div class="blog-hero-tag">Экспертный контент</div>
+  <h1>Блог о ремонте<br>и строительстве</h1>
+  <p>Цены 2026, советы специалистов, разбор ошибок и пошаговые гайды от команды СтройКэш</p>
 </div>
 
-<div class="sc-blog-wrap">
-<div class="sc-blog-grid">
+<div class="blog-wrap">
+  <div class="blog-section-title">Все статьи — 6 материалов</div>
+  <div class="blog-grid">
 
-<a href="/stoimost-remonta" class="sc-card">
-  <div class="sc-card-thumb">💰</div>
-  <div class="sc-card-body">
-    <div class="sc-card-meta"><span class="sc-badge">Цены</span><span>31 мая 2026</span><span>⏱ 7 мин</span></div>
-    <h2>Сколько стоит ремонт квартиры в Москве в 2026 году</h2>
-    <p>Актуальные цены по всем видам ремонта. Таблица за м², бюджеты по типам квартир, советы как не переплатить.</p>
-    <span class="sc-card-link">Читать статью <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+    <a href="/stoimost-remonta" class="blog-card">
+      <div class="blog-card-thumb blog-card-thumb--price">
+        <div class="blog-card-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-badge blog-badge--price">Цены</span>
+        <div class="blog-card-meta"><span>31 мая 2026</span><span class="blog-card-meta-dot"></span><span>7 мин чтения</span></div>
+        <h2>Сколько стоит ремонт квартиры в Москве в 2026 году</h2>
+        <p>Актуальные цены по всем видам ремонта. Таблица стоимости за м², бюджеты по типам квартир, советы как не переплатить.</p>
+        <span class="blog-card-link">Читать статью <svg viewBox="0 0 16 16"><polyline points="5 8 11 8"/><polyline points="8 5 11 8 8 11"/></svg></span>
+      </div>
+    </a>
+
+    <a href="/chto-vhodit-v-remont" class="blog-card">
+      <div class="blog-card-thumb blog-card-thumb--stages">
+        <div class="blog-card-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-badge blog-badge--stages">Этапы работ</span>
+        <div class="blog-card-meta"><span>31 мая 2026</span><span class="blog-card-meta-dot"></span><span>8 мин чтения</span></div>
+        <h2>Ремонт квартиры под ключ: что входит и из каких этапов состоит</h2>
+        <p>Полный список работ, правильная последовательность этапов и сроки каждого. Что проверить в договоре.</p>
+        <span class="blog-card-link">Читать статью <svg viewBox="0 0 16 16"><polyline points="5 8 11 8"/><polyline points="8 5 11 8 8 11"/></svg></span>
+      </div>
+    </a>
+
+    <a href="/remont-v-novostrojke" class="blog-card">
+      <div class="blog-card-thumb blog-card-thumb--new">
+        <div class="blog-card-thumb-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-badge blog-badge--new">Новостройки</span>
+        <div class="blog-card-meta"><span>31 мая 2026</span><span class="blog-card-meta-dot"></span><span>6 мин чтения</span></div>
+        <h2>Ремонт в новостройке: когда начинать и с чего</h2>
+        <p>Усадка дома, черновая и чистовая отделка, типичные ошибки которые стоят дорого. Советы эксперта.</p>
+        <span class="blog-card-link">Читать статью <svg viewBox="0 0 16 16"><polyline points="5 8 11 8"/><polyline points="8 5 11 8 8 11"/></svg></span>
+      </div>
+    </a>
+
+    <a href="/remont-vannoj-cena" class="blog-card">
+      <div class="blog-card-thumb blog-card-thumb--bath">
+        <div class="blog-card-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><line x1="10" y1="5" x2="8" y2="7"/></svg>
+        </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-badge blog-badge--bath">Ванная</span>
+        <div class="blog-card-meta"><span>31 мая 2026</span><span class="blog-card-meta-dot"></span><span>5 мин чтения</span></div>
+        <h2>Ремонт ванной комнаты под ключ: цены и сроки 2026</h2>
+        <p>Таблица цен по площади и классу отделки. Что входит, как выбрать плитку, нужна ли замена труб.</p>
+        <span class="blog-card-link">Читать статью <svg viewBox="0 0 16 16"><polyline points="5 8 11 8"/><polyline points="8 5 11 8 8 11"/></svg></span>
+      </div>
+    </a>
+
+    <a href="/kak-vybrat-stroitelnuyu-kompaniyu" class="blog-card">
+      <div class="blog-card-thumb blog-card-thumb--choice">
+        <div class="blog-card-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-badge blog-badge--choice">Советы</span>
+        <div class="blog-card-meta"><span>31 мая 2026</span><span class="blog-card-meta-dot"></span><span>6 мин чтения</span></div>
+        <h2>Как выбрать строительную компанию для ремонта: 7 критериев</h2>
+        <p>Признаки надёжной компании, красные флаги и вопросы которые нужно задать до подписания договора.</p>
+        <span class="blog-card-link">Читать статью <svg viewBox="0 0 16 16"><polyline points="5 8 11 8"/><polyline points="8 5 11 8 8 11"/></svg></span>
+      </div>
+    </a>
+
+    <a href="/stroitelstvo-doma-podmoskovye" class="blog-card">
+      <div class="blog-card-thumb blog-card-thumb--build">
+        <div class="blog-card-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+      </div>
+      <div class="blog-card-body">
+        <span class="blog-badge blog-badge--build">Строительство</span>
+        <div class="blog-card-meta"><span>31 мая 2026</span><span class="blog-card-meta-dot"></span><span>8 мин чтения</span></div>
+        <h2>Строительство дома под ключ в Подмосковье: цены и материалы 2026</h2>
+        <p>Сравнение технологий: газобетон, кирпич, каркас. Таблица цен за м², этапы строительства, выбор участка.</p>
+        <span class="blog-card-link">Читать статью <svg viewBox="0 0 16 16"><polyline points="5 8 11 8"/><polyline points="8 5 11 8 8 11"/></svg></span>
+      </div>
+    </a>
+
   </div>
-</a>
 
-<a href="/chto-vhodit-v-remont" class="sc-card">
-  <div class="sc-card-thumb">🏗️</div>
-  <div class="sc-card-body">
-    <div class="sc-card-meta"><span class="sc-badge">Этапы</span><span>31 мая 2026</span><span>⏱ 8 мин</span></div>
-    <h2>Ремонт квартиры под ключ: что входит и из каких этапов состоит</h2>
-    <p>Полный список работ, правильная последовательность этапов и сроки каждого. Что проверить в договоре.</p>
-    <span class="sc-card-link">Читать статью <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+  <div class="blog-cta">
+    <h2>Нужен ремонт или строительство?</h2>
+    <p>Бесплатный замер и смета — без обязательств. Гарантия 5 лет.</p>
+    <div class="blog-cta-btns">
+      <a href="/remont" class="btn-primary">Заказать ремонт квартиры</a>
+      <a href="/calculator" class="btn-outline">Рассчитать стоимость</a>
+    </div>
   </div>
-</a>
-
-<a href="/remont-v-novostrojke" class="sc-card">
-  <div class="sc-card-thumb">🏢</div>
-  <div class="sc-card-body">
-    <div class="sc-card-meta"><span class="sc-badge">Новостройки</span><span>31 мая 2026</span><span>⏱ 6 мин</span></div>
-    <h2>Ремонт в новостройке: когда начинать и с чего</h2>
-    <p>Усадка дома, черновая и чистовая отделка, типичные ошибки которые стоят дорого. Советы эксперта.</p>
-    <span class="sc-card-link">Читать статью <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-  </div>
-</a>
-
-<a href="/remont-vannoj-cena" class="sc-card">
-  <div class="sc-card-thumb">🚿</div>
-  <div class="sc-card-body">
-    <div class="sc-card-meta"><span class="sc-badge">Ванная</span><span>31 мая 2026</span><span>⏱ 5 мин</span></div>
-    <h2>Ремонт ванной комнаты под ключ: цены и сроки 2026</h2>
-    <p>Таблица цен по площади и классу отделки. Что входит, как выбрать плитку, нужна ли замена труб.</p>
-    <span class="sc-card-link">Читать статью <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-  </div>
-</a>
-
-<a href="/kak-vybrat-stroitelnuyu-kompaniyu" class="sc-card">
-  <div class="sc-card-thumb">✅</div>
-  <div class="sc-card-body">
-    <div class="sc-card-meta"><span class="sc-badge">Советы</span><span>31 мая 2026</span><span>⏱ 6 мин</span></div>
-    <h2>Как выбрать строительную компанию для ремонта: 7 критериев</h2>
-    <p>Признаки надёжной компании, красные флаги и вопросы которые нужно задать до подписания договора.</p>
-    <span class="sc-card-link">Читать статью <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-  </div>
-</a>
-
-<a href="/stroitelstvo-doma-podmoskovye" class="sc-card">
-  <div class="sc-card-thumb">🏡</div>
-  <div class="sc-card-body">
-    <div class="sc-card-meta"><span class="sc-badge">Строительство</span><span>31 мая 2026</span><span>⏱ 8 мин</span></div>
-    <h2>Строительство дома под ключ в Подмосковье: цены и материалы 2026</h2>
-    <p>Сравнение технологий: газобетон, кирпич, каркас. Таблица цен за м², этапы строительства, выбор участка.</p>
-    <span class="sc-card-link">Читать статью <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-  </div>
-</a>
-
-</div>
-
-<div class="sc-cta-block">
-  <h2>Нужен ремонт или строительство?</h2>
-  <p>Бесплатный замер и смета — без обязательств. Гарантия 5 лет.</p>
-  <div class="sc-cta-btns">
-    <a href="/remont" class="sc-btn-p">Заказать ремонт квартиры</a>
-    <a href="/calculator" class="sc-btn-o">Рассчитать стоимость</a>
-  </div>
-</div>
 </div>
 
 <script nomodule src="/js/tilda-polyfill-1.0.min.js" charset="utf-8"></script>
